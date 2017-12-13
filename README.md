@@ -1,0 +1,2 @@
+My spacemacs configuration
+==========================
