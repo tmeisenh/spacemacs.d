@@ -270,15 +270,6 @@ you should place your code here."
     "ml" 'org-mobile-pull
   )
 
-  (require 'coin-ticker)
-  (setq coin-ticker-api-poll-interval 30)
-  (setq coin-ticker-syms '("BTC" "ETH" "LTC"))
-  ;; Optional: Just show prices (and no symbols)
-  (setq coin-ticker-show-syms 1)
-  (setq coin-ticker-price-convert "USD")
-  (setq coin-ticker-price-symbol "$")
-  (coin-ticker-mode 1)
-
   ) ;; end user-config
 ;; Junk below here
 (defun dotspacemacs/emacs-custom-settings ()

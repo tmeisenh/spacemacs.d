@@ -1,5 +1,7 @@
 (setq personal-packages
-      '(zoom-window))
+      '(zoom-window
+        coin-ticker)
+      )
 
 (defun personal/init-zoom-window ()
   (use-package zoom-window
@@ -11,3 +13,14 @@
       "zn"  'zoom-window-next
       "zc"  'evil-close-fold
       "zo"  'evil-open-fold)))
+
+(defun personal/init-coin-ticker ()
+  (use-package coin-ticker
+    :config
+    (setq
+     coin-ticker-api-poll-interval 30
+     coin-ticker-syms '("BTC" "ETH" "LTC")
+     coin-ticker-price-convert "USD"
+     coin-ticker-price-symbol "$")
+     (coin-ticker-mode t))
+  )
