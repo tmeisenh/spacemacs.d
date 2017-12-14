@@ -8,4 +8,6 @@
      '(zoom-window-mode-line-color "#8f3f71"))
     (spacemacs/set-leader-keys
       "zz"  'zoom-window-zoom
-      "zn"  'zoom-window-next)))
+      "zn"  'zoom-window-next
+      "zc"  'evil-close-fold
+      "zo"  'evil-open-fold)))
