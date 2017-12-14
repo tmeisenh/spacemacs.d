@@ -96,7 +96,7 @@
 (defvar dotspacemacs/layers/local
   '(
     ;; (macros :location local)
-    ;; (config :location local)
+    (config :location local)
     (display :location local)
     ;; (langs :location local)
     (personal :location local)
@@ -254,21 +254,6 @@ you should place your code here."
               (add-hook 'after-save-hook #'stylelint-fix-file-and-revert nil 'make-it-local)))
 
   (add-to-list 'auto-mode-alist '("Jenkinsfile$" . groovy-mode))
-
-  ;; Org mode
-  (setq org-directory "~/Documents/org")
-
-  ;; MobileOrg
-  (setq org-mobile-files '("~/Documents/org"))
-  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-  (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
-
-  ;; SPACE m m p
-  ;; SPACE m m l
-  (evil-leader/set-key-for-mode 'org-mode
-    "mp" 'org-mobile-push
-    "ml" 'org-mobile-pull
-  )
 
   ) ;; end user-config
 ;; Junk below here
