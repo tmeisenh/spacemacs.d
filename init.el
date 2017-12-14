@@ -39,41 +39,46 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    (append
-    dotspacemacs/layers/stuff
+    dotspacemacs/layers/core
+    dotspacemacs/layers/coding
     )
    ))
 
-(defvar dotspacemacs/layers/stuff
+(defvar dotspacemacs/layers/core
   '(
     auto-completion
-    c-c++
     (colors :variables colors-enable-nyan-cat-progress-bar t)
     better-defaults
+    emoji
+    git
+    github
+    helm
+    org
+    slack
+    spell-checking
+    tmux
+    )
+  "Layers I consider core to Spacemacs.")
+(defvar dotspacemacs/layers/coding
+  '(
+    c-c++
     dash
     docker
     elixir
     emacs-lisp
-    emoji
     erlang
-    git
-    github
     gtags
-    helm
     html
     java
     javascript
     markdown
     nginx
-    org
     react
     ruby
     shell
-    slack
-    spell-checking
     sql
     swift
     terraform
-    tmux
     vimscript
     yaml
     )
