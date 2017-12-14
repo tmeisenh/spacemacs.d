@@ -19,7 +19,7 @@
     :config
     (setq
      coin-ticker-api-poll-interval 30
-     coin-ticker-syms '("BTC" "ETH" "LTC")
+     coin-ticker-syms '("BTC" "ETH" "LTC" "XRP")
      coin-ticker-price-convert "USD"
      coin-ticker-price-symbol "$")
      (coin-ticker-mode t))
