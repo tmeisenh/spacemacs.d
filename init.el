@@ -12,63 +12,48 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-(defun dotspacemacs/layers ()
-  "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
+(defun dotspacemacs/layers/packages ()
+  (setq-default
+
+   dotspacemacs-additional-packages
+   '(all-the-icons      ;; Allow icons to be used in places where it makes senseall-the-icons
+     all-the-icons-dired;; Use the pretty icons in dir mode
+     eslintd-fix        ;; run eslint --fix on save
+     gruvbox-theme      ;; The best colors
+     groovy-mode        ;; 
+     restclient         ;; A built in restclient similar to Postman
+     zoom-window        ;; Zoom frames like tmux zooms panes
+     color-theme-solarized
+     coin-ticker)
+
+   dotspacemacs-frozen-packages '()
+   dotspacemacs-excluded-packages '()
+   dotspacemacs-install-packages 'used-but-keep-unused)
+  )
+
+(defun dotspacemacs/layers/config ()
   (setq-default
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(
-     auto-completion
-     c-c++
-     (colors :variables colors-enable-nyan-cat-progress-bar t)
-     better-defaults
-     dash
-     docker
-     elixir
-     emacs-lisp
-     emoji
-     erlang
-     git
-     github
-     gtags
-     helm
-     html
-     java
-     javascript
-     markdown
-     nginx
-     org
-     react
-     ruby
-     shell
-     slack
-     spell-checking
-     sql
-     swift
-     terraform
-     tmux
-     vimscript
-     yaml
-     )
-   dotspacemacs-additional-packages '(
-                                      all-the-icons      ;; Allow icons to be used in places where it makes senseall-the-icons
-                                      all-the-icons-dired;; Use the pretty icons in dir mode
-                                      eslintd-fix        ;; run eslint --fix on save
-                                      gruvbox-theme      ;; The best colors
-                                      groovy-mode        ;; 
-                                      restclient         ;; A built in restclient similar to Postman
-                                      zoom-window        ;; Zoom frames like tmux zooms panes
-                                      color-theme-solarized
-                                      coin-ticker
-                                      )
-   dotspacemacs-frozen-packages '()
-   dotspacemacs-excluded-packages '()
-   dotspacemacs-install-packages 'used-only))
+   (append
+    dotspacemacs/layers/stuff
+    )
+   ))
+
+(defvar dotspacemacs/layers/stuff
+  '(auto-completion c-c++ (colors :variables colors-enable-nyan-cat-progress-bar t) better-defaults dash docker elixir emacs-lisp emoji erlang git github gtags helm html java javascript markdown nginx org react ruby shell slack spell-checking sql swift terraform tmux vimscript yaml)
+  "Layers I consider core to Spacemacs.")
+
+(defun dotspacemacs/layers ()
+  "Configuration Layers declaration.
+You should not put any user code in this function besides modifying the variable
+values."
+  (dotspacemacs/layers/config)
+  (dotspacemacs/layers/packages)
+  )
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -260,3 +245,23 @@ you should place your code here."
 
   ) ;; end user-config
 ;; Junk below here
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yaml-mode xterm-color web-mode web-beautify vimrc-mode unfill terraform-mode hcl-mode tagedit swift-mode sql-indent smeargle slim-mode slack circe oauth2 websocket shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor rubocop rspec-mode robe realgud test-simple loc-changes load-relative rbenv rake rainbow-mode rainbow-identifiers pug-mode orgit org-projectile org-category-capture org-present org-pomodoro org-download org-brain ob-elixir nginx-mode mwim multi-term mmm-mode minitest meghanada markdown-toc markdown-mode magit-gitflow magit-gh-pulls livid-mode skewer-mode less-css-mode js2-refactor multiple-cursors js2-mode js-doc impatient-mode simple-httpd htmlize helm-gtags helm-gitignore helm-dash helm-css-scss helm-company helm-c-yasnippet haml-mode gradle-mode gnuplot gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-mix flycheck-credo flycheck evil-org evil-magit magit git-commit ghub with-editor eshell-z eshell-prompt-extras esh-help erlang ensime sbt-mode scala-mode emojify ht emoji-cheat-sheet-plus emmet-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diff-hl dash-at-point dactyl-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-emoji company-emacs-eclim eclim company-c-headers color-identifiers-mode coffee-mode cmake-mode cmake-ide levenshtein clang-format chruby bundler inf-ruby browse-at-remote auto-yasnippet yasnippet auto-dictionary alert log4e gntp alchemist company elixir-mode ac-ispell auto-complete zoom-window ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org symon string-inflection spaceline restclient restart-emacs rainbow-delimiters popwin persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag gruvbox-theme groovy-mode google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eslintd-fix elisp-slime-nav editorconfig dumb-jump diminish define-word column-enforce-mode color-theme-solarized coin-ticker clean-aindent-mode auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
