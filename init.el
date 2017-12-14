@@ -13,18 +13,19 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 (defun dotspacemacs/layers/packages ()
+  "Packages I like"
   (setq-default
 
    dotspacemacs-additional-packages
-   '(all-the-icons      ;; Allow icons to be used in places where it makes senseall-the-icons
+   '(all-the-icons      ;; Allow icons to be used in places where it makes sense
      all-the-icons-dired;; Use the pretty icons in dir mode
      eslintd-fix        ;; run eslint --fix on save
      gruvbox-theme      ;; The best colors
-     groovy-mode        ;; 
+     groovy-mode        ;;
      restclient         ;; A built in restclient similar to Postman
      zoom-window        ;; Zoom frames like tmux zooms panes
-     color-theme-solarized
-     coin-ticker)
+     coin-ticker        ;; bitcoin ticker
+     )
 
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
@@ -32,17 +33,22 @@
   )
 
 (defun dotspacemacs/layers/config ()
+  "General layer configuration"
   (setq-default
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation t
+
    dotspacemacs-configuration-layer-path '()
+
    ;; dotspacemacs-configuration-layer-path
    ;; (list (os-path "~/.spacemacs.d/layers/"))
+
    dotspacemacs-configuration-layers
    (append
     dotspacemacs/layers/core
     dotspacemacs/layers/coding
+    dotspacemacs/layers/local
     )
    ))
 
@@ -86,6 +92,16 @@
     yaml
     )
   "Layers for coding.")
+
+(defvar dotspacemacs/layers/local
+  '(
+    (macros :location local)
+    (config :location local)
+    (display :location local)
+    (langs :location local)
+    (personal :location local)
+    )
+  "Local layers housed in `~/.spacemacs.d/layers'. (These five are required!)")
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
