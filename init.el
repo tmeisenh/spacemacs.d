@@ -44,7 +44,39 @@
    ))
 
 (defvar dotspacemacs/layers/stuff
-  '(auto-completion c-c++ (colors :variables colors-enable-nyan-cat-progress-bar t) better-defaults dash docker elixir emacs-lisp emoji erlang git github gtags helm html java javascript markdown nginx org react ruby shell slack spell-checking sql swift terraform tmux vimscript yaml)
+  '(
+    auto-completion
+    c-c++
+    (colors :variables colors-enable-nyan-cat-progress-bar t)
+    better-defaults
+    dash
+    docker
+    elixir
+    emacs-lisp
+    emoji
+    erlang
+    git
+    github
+    gtags
+    helm
+    html
+    java
+    javascript
+    markdown
+    nginx
+    org
+    react
+    ruby
+    shell
+    slack
+    spell-checking
+    sql
+    swift
+    terraform
+    tmux
+    vimscript
+    yaml
+    )
   "Layers I consider core to Spacemacs.")
 
 (defun dotspacemacs/layers ()
