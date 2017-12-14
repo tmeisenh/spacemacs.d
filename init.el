@@ -84,6 +84,7 @@
     nginx
     react
     ruby
+    semantic
     shell
     sql
     swift
@@ -95,10 +96,9 @@
 
 (defvar dotspacemacs/layers/local
   '(
-    ;; (macros :location local)
     (config :location local)
     (display :location local)
-    ;; (langs :location local)
+    (langs :location local)
     (personal :location local)
     )
   "Local layers housed in `~/.spacemacs.d/layers'. (These five are required!)")
@@ -203,56 +203,12 @@ you should place your code here."
 
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
-  (setq-default
-   js-indent-level 2
-   js2-strict-missing-semi-warning nil
-
-   ;; js2-mode
-   js2-basic-offset 2
-   ;; web-mode
-   css-indent-offset 2
-   web-mode-markup-indent-offset 2
-   web-mode-css-indent-offset 2
-   web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2)
-
-  (setq js2-mode-show-parse-errors nil
-        js2-mode-show-strict-warnings nil
-        flycheck-disabled-checkers '(javascript-jshint)
-        flycheck-checkers '(javascript-eslint))
-
-  (with-eval-after-load 'flycheck
-    (dolist (checker '(javascript-eslint javascript-standard))
-      (flycheck-add-mode checker 'react-mode)))
-
-  (add-hook 'js2-mode-hook 'flycheck-mode)
-  (add-hook 'js2-mode-hook 'eslintd-fix-mode)
-
-  (add-hook 'scss-mode-hook 'flycheck-mode)
-
-  (add-hook 'react-mode-hook 'flycheck-mode)
-  (add-hook 'react-mode-hook 'eslintd-fix-mode)
-
   ;; https://github.com/purcell/exec-path-from-shell
   ;; only need exec-path-from-shell on OSX
   ;; this hopefully sets up path and other vars better
   (exec-path-from-shell-initialize)
 
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-
-  (defun stylelint-fix-file ()
-    (interactive)
-    (message "stylelint --fix for file " (buffer-file-name))
-    (shell-command (concat "stylelint --fix " (buffer-file-name))))
-
-  (defun stylelint-fix-file-and-revert ()
-    (interactive)
-    (stylelint-fix-file)
-    (revert-buffer t t))
-
-  (add-hook 'scss-mode-hook
-            (lambda ()
-              (add-hook 'after-save-hook #'stylelint-fix-file-and-revert nil 'make-it-local)))
 
   (add-to-list 'auto-mode-alist '("Jenkinsfile$" . groovy-mode))
 
@@ -268,9 +224,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
+ '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (yaml-mode xterm-color web-mode web-beautify vimrc-mode unfill terraform-mode hcl-mode tagedit swift-mode sql-indent smeargle slim-mode slack circe oauth2 websocket shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor rubocop rspec-mode robe realgud test-simple loc-changes load-relative rbenv rake rainbow-mode rainbow-identifiers pug-mode orgit org-projectile org-category-capture org-present org-pomodoro org-download org-brain ob-elixir nginx-mode mwim multi-term mmm-mode minitest meghanada markdown-toc markdown-mode magit-gitflow magit-gh-pulls livid-mode skewer-mode less-css-mode js2-refactor multiple-cursors js2-mode js-doc impatient-mode simple-httpd htmlize helm-gtags helm-gitignore helm-dash helm-css-scss helm-company helm-c-yasnippet haml-mode gradle-mode gnuplot gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-mix flycheck-credo flycheck evil-org evil-magit magit git-commit ghub with-editor eshell-z eshell-prompt-extras esh-help erlang ensime sbt-mode scala-mode emojify ht emoji-cheat-sheet-plus emmet-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diff-hl dash-at-point dactyl-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-emoji company-emacs-eclim eclim company-c-headers color-identifiers-mode coffee-mode cmake-mode cmake-ide levenshtein clang-format chruby bundler inf-ruby browse-at-remote auto-yasnippet yasnippet auto-dictionary alert log4e gntp alchemist company elixir-mode ac-ispell auto-complete zoom-window ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org symon string-inflection spaceline restclient restart-emacs rainbow-delimiters popwin persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag gruvbox-theme groovy-mode google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eslintd-fix elisp-slime-nav editorconfig dumb-jump diminish define-word column-enforce-mode color-theme-solarized coin-ticker clean-aindent-mode auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (stickyfunc-enhance srefactor zoom-window yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill toc-org terraform-mode tagedit symon swift-mode string-inflection sql-indent spaceline smeargle slim-mode slack shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor rubocop rspec-mode robe restclient restart-emacs realgud rbenv rake rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode popwin persp-mode password-generator paradox orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file ob-elixir nginx-mode neotree mwim multi-term move-text mmm-mode minitest meghanada markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode js2-refactor js-doc info+ indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag gruvbox-theme groovy-mode gradle-mode google-translate golden-ratio gnuplot github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags fuzzy flyspell-correct-helm flycheck-mix flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras esh-help erlang ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig dumb-jump dockerfile-mode docker disaster diminish diff-hl define-word dash-at-point dactyl-mode company-web company-tern company-statistics company-emoji company-emacs-eclim company-c-headers column-enforce-mode color-theme-solarized color-identifiers-mode coin-ticker coffee-mode cmake-mode cmake-ide clean-aindent-mode clang-format chruby bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile all-the-icons-dired alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+ '(zoom-window-mode-line-color "#8f3f71"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
