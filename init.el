@@ -37,6 +37,8 @@
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
+   ;; dotspacemacs-configuration-layer-path
+   ;; (list (os-path "~/.spacemacs.d/layers/"))
    dotspacemacs-configuration-layers
    (append
     dotspacemacs/layers/core
@@ -59,6 +61,7 @@
     tmux
     )
   "Layers I consider core to Spacemacs.")
+
 (defvar dotspacemacs/layers/coding
   '(
     c-c++
@@ -82,7 +85,7 @@
     vimscript
     yaml
     )
-  "Layers I consider core to Spacemacs.")
+  "Layers for coding.")
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
