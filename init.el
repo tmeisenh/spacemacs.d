@@ -225,11 +225,12 @@ you should place your code here."
     (dolist (checker '(javascript-eslint javascript-standard))
       (flycheck-add-mode checker 'react-mode)))
 
-  (add-hook 'react-mode-hook 'flycheck-mode)
   (add-hook 'js2-mode-hook 'flycheck-mode)
+  (add-hook 'js2-mode-hook 'eslintd-fix-mode)
+
   (add-hook 'scss-mode-hook 'flycheck-mode)
 
-  (add-hook 'js2-mode-hook 'eslintd-fix-mode)
+  (add-hook 'react-mode-hook 'flycheck-mode)
   (add-hook 'react-mode-hook 'eslintd-fix-mode)
 
   ;; https://github.com/purcell/exec-path-from-shell
