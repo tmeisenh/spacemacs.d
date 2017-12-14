@@ -95,10 +95,10 @@
 
 (defvar dotspacemacs/layers/local
   '(
-    (macros :location local)
-    (config :location local)
+    ;; (macros :location local)
+    ;; (config :location local)
     (display :location local)
-    (langs :location local)
+    ;; (langs :location local)
     (personal :location local)
     )
   "Local layers housed in `~/.spacemacs.d/layers'. (These five are required!)")
@@ -200,26 +200,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   (global-auto-revert-mode t)
-
-
-  (use-package zoom-window
-    :ensure t
-    :init
-    (custom-set-variables
-     '(zoom-window-mode-line-color "#8f3f71"))
-    (spacemacs/set-leader-keys
-      "zz"  'zoom-window-zoom
-      "zn"  'zoom-window-next))
-
-  (use-package gruvbox-theme
-    :ensure t
-    :init
-    (disable-theme 'spacemacs-dark)
-    (load-theme 'gruvbox t t)
-    (custom-theme-set-faces 'gruvbox
-                            '(web-mode-html-attr-custom-face ((t (:slant italic))))
-                            '(web-mode-html-attr-name-face ((t (:slant italic)))))
-    (enable-theme 'gruvbox))
 
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
