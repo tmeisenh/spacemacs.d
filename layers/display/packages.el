@@ -5,7 +5,6 @@
         all-the-icons
         all-the-icons-dired
         gruvbox-theme
-        powerline
         )
       )
 
@@ -29,12 +28,3 @@
                             '(web-mode-html-attr-name-face ((t (:slant italic)))))
     (enable-theme 'gruvbox))
   )
-
-(defun display/init-powerline ()
-  (use-package powerline
-    :config
-
-    (display-time-mode)
-    (defpowerline display-time display-time-string)
-    (setq display-time-format "%H:%M")
-    ))
