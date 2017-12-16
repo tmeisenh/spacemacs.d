@@ -182,6 +182,13 @@ values."
    dotspacemacs-whitespace-cleanup nil
    ))
 
+(defun dotspacemacs/user-config/toggles ()
+    "Various toggles"
+
+  (spacemacs/toggle-display-time-on)
+  (spacemacs/toggle-smartparens-globally-off)
+  (spacemacs/toggle-highlight-current-line-globally-off))
+
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
@@ -201,6 +208,7 @@ you should place your code here."
 
   (global-auto-revert-mode t)
 
+  (dotspacemacs/user-config/toggles)
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
   ;; https://github.com/purcell/exec-path-from-shell
