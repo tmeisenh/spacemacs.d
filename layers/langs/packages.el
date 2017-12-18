@@ -1,7 +1,6 @@
 (setq langs-packages
       '(flycheck
         js2-mode
-        react-mode
         scss-mode
         )
       )
@@ -20,12 +19,12 @@
         js2-mode-show-strict-warnings nil)
 
   (add-hook 'js2-mode-hook 'flycheck-mode)
-  (add-hook 'js2-mode-hook 'eslintd-fix-mode))
+  (add-hook 'js2-mode-hook 'eslintd-fix-mode)
 
-
-(defun langs/post-init-react-mode ()
+  ;; post-init-react-mode doesn't get called
   (add-hook 'react-mode-hook 'flycheck-mode)
-  (add-hook 'react-mode-hook 'eslintd-fix-mode))
+  (add-hook 'react-mode-hook 'eslintd-fix-mode)
+  )
 
 (defun langs/post-init-scss-mode ()
   (add-hook 'scss-mode-hook 'flycheck-mode)
