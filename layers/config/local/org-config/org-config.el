@@ -15,4 +15,5 @@
 (evil-leader/set-key-for-mode 'org-mode
   "mp" 'org-mobile-push
   "ml" 'org-mobile-pull
+  "I" 'org-table-field-info
   )
