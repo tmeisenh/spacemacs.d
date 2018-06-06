@@ -57,6 +57,7 @@
     auto-completion
     (colors :variables colors-enable-nyan-cat-progress-bar t)
     better-defaults
+    csv
     emoji
     git
     github
