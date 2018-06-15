@@ -1,6 +1,7 @@
 (setq langs-packages
       '(flycheck
         js2-mode
+        rjsx-mode
         scss-mode
         )
       )
@@ -11,8 +12,16 @@
 
   (with-eval-after-load 'flycheck
     (dolist (checker '(javascript-eslint javascript-standard))
-      (flycheck-add-mode checker 'react-mode)
+      (flycheck-add-mode checker 'rjsx-mode)
     )))
+
+(defun langs/post-init-rjsx-mode ()
+  (setq js2-mode-show-parse-errors nil
+        js2-mode-show-strict-warnings nil)
+
+  (add-hook 'rjsx-mode-hook 'flycheck-mode)
+  (add-hook 'rjsx-mode-hook 'eslintd-fix-mode)
+  )
 
 (defun langs/post-init-js2-mode ()
   (setq js2-mode-show-parse-errors nil
@@ -21,9 +30,6 @@
   (add-hook 'js2-mode-hook 'flycheck-mode)
   (add-hook 'js2-mode-hook 'eslintd-fix-mode)
 
-  ;; post-init-react-mode doesn't get called
-  (add-hook 'react-mode-hook 'flycheck-mode)
-  (add-hook 'react-mode-hook 'eslintd-fix-mode)
   )
 
 (defun langs/post-init-scss-mode ()
