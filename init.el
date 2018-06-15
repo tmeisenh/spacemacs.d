@@ -215,7 +215,7 @@ you should place your code here."
   ;; https://github.com/purcell/exec-path-from-shell
   ;; only need exec-path-from-shell on OSX
   ;; this hopefully sets up path and other vars better
-  (exec-path-from-shell-initialize)
+  ;; (exec-path-from-shell-initialize)
 
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
